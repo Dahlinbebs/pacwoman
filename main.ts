@@ -174,6 +174,10 @@ function pacManMoveRight () {
         )
     }
 }
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestOpen, function (sprite, location) {
+    game.gameOver(true)
+    game.setGameOverEffect(true, effects.confetti)
+})
 let mySprite: Sprite = null
 mySprite = sprites.create(img`
     . . . . 5 5 5 5 5 5 5 . . . . . 
@@ -195,7 +199,7 @@ mySprite = sprites.create(img`
     `, SpriteKind.Player)
 controller.moveSprite(mySprite)
 tiles.setCurrentTilemap(tilemap`level1`)
-tiles.placeOnTile(mySprite, tiles.getTileLocation(0, 0))
+tiles.placeOnTile(mySprite, tiles.getTileLocation(0, 7))
 scene.cameraFollowSprite(mySprite)
 game.onUpdate(function () {
     pacManMoveLeft()
